@@ -1,7 +1,7 @@
 Attribute VB_Name = "Module2"
 Option Explicit
 Public Sub 行削除､行隠し()
-
+    'git-test
 '   行削除s
     Dim B_Row As Long
     Dim i As Long
