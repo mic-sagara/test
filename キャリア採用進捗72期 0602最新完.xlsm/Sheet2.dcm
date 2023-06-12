@@ -31,7 +31,7 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     
     If Selection.Count = 1 Then
         If Not Intersect(Target, S_Date) Is Nothing Then
-            Call ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click
+            Call ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click
                 If L_Date.Value = 1 Or S_Date > L_Date Then
                     Do While S_Date > L_Date
                             If L_Date.Value = 0 Then
@@ -40,9 +40,9 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
                             End If
 
                             S_Date.Interior.ColorIndex = 3
-                            MsgBox "“ú•t‚ğ‚²Šm”F‚­‚¾‚³‚¢B"
+                            MsgBox "æ—¥ä»˜ã‚’ã”ç¢ºèªãã ã•ã„ã€‚"
                             
-                            Call ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click
+                            Call ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click
                                 If S_Date <= L_Date Then
                                     S_Date.Interior.ColorIndex = 0
                                     Exit Do
@@ -58,20 +58,20 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     
     If Selection.Count = 1 Then
         If Not Intersect(Target, L_Date) Is Nothing Then
-            Call ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click
+            Call ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click
                 If S_Date >= L_Date Then
                     Do While S_Date > L_Date
                     
                             If S_Date.Value = 0 Then
-                                MsgBox "`Å‰‚Ì“ú•t‚ğ‚²w’è‚­‚¾‚³‚¢B"
+                                MsgBox "`æœ€åˆã®æ—¥ä»˜ã‚’ã”æŒ‡å®šãã ã•ã„ã€‚"
                                 S_Date.Interior.ColorIndex = 3
                                 Exit Do
                             End If
                             
                             L_Date.Interior.ColorIndex = 3
-                            MsgBox "“ú•t‚ğ‚²Šm”F‚­‚¾‚³‚¢B"
+                            MsgBox "æ—¥ä»˜ã‚’ã”ç¢ºèªãã ã•ã„ã€‚"
                             
-                            Call ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click
+                            Call ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click
                                 If S_Date <= L_Date Then
                                     L_Date.Interior.ColorIndex = 0
                                     Exit Do
@@ -82,7 +82,7 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
                         L_Date.Interior.ColorIndex = 0
         End If
            'ElseIf S_Date.Value = 0 Then
-           '                     MsgBox "Å‰‚Ì“ú•t‚ğ‚²w’è‚­‚¾‚³‚¢Bd3"
+           '                     MsgBox "æœ€åˆã®æ—¥ä»˜ã‚’ã”æŒ‡å®šãã ã•ã„ã€‚d3"
            '                   S_Date.Interior.ColorIndex = 3
     End If
 
@@ -92,7 +92,7 @@ Continue:
     
     If Target.Count > 1 Or Target.Column <> 1 Then End
     Application.ScreenUpdating = False
-    Set ws2 = ThisWorkbook.Worksheets("TŸŒ‹‰Êi‘S‘ÌÅVj")
+    Set ws2 = ThisWorkbook.Worksheets("é€±æ¬¡çµæœï¼ˆå…¨ä½“æœ€æ–°ï¼‰")
     
     Headline_Color = RGB(197, 220, 255)
     Hide_Color = RGB(232, 241, 255)
@@ -101,7 +101,7 @@ Continue:
     
    
     
-    '‘S‘Ìƒ{ƒ^ƒ“@‰B‚·
+    'å…¨ä½“ãƒœã‚¿ãƒ³ã€€éš ã™
     If Target.Address = "$A$6" And ws2.Range("A6").Value = "-" Then
         i = 7
         Do While ws2.Cells(i, 1).Interior.Color <> RGB(0, 32, 96)
@@ -134,7 +134,7 @@ Continue:
     
 
     i = 1
-    '‰B‚·
+    'éš ã™
     If ws2.Rows(Headline_Row + i).Hidden = False Then
         Do While ws2.Cells(Headline_Row + i, 2).Interior.Color = Hide_Color
             ws2.Rows(Headline_Row + i).Hidden = True
@@ -142,7 +142,7 @@ Continue:
             i = i + 1
         Loop
     Else
-    '•\¦‚·‚é
+    'è¡¨ç¤ºã™ã‚‹
         Do While ws2.Cells(Headline_Row + i, 2).Interior.Color = Hide_Color
             ws2.Rows(Headline_Row + i).Hidden = False
             Cells(Headline_Row, 1) = "-"
@@ -157,7 +157,7 @@ LaskCheck:
     Do While ws2.Cells(i, 1).Interior.Color <> RGB(0, 32, 96)
         If ws2.Cells(i, 1) = "-" And ws2.Cells(i, 1).Interior.Color = Headline_Color Then
             PMcount = 1
-            Debug.Print "-‚É•Ï‚¦‚é"
+            Debug.Print "-ã«å¤‰ãˆã‚‹"
             
         End If
         i = i + 1

@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} CalendarForm 
-   Caption         =   "“ú•t‚ğ‘I‘ğ‚µ‚ÄƒZƒ‹‚É“ü—Í"
+   Caption         =   "æ—¥ä»˜ã‚’é¸æŠã—ã¦ã‚»ãƒ«ã«å…¥åŠ›"
    ClientHeight    =   3600
    ClientLeft      =   36
    ClientTop       =   168
@@ -25,13 +25,13 @@ Private Sub UserForm_Initialize()
     Dim i As Long
     Dim pos As Long
     pos = Range("C4")
-    'è“®w’è‚Ìê‡‚Íˆ—‚ğ•ªŠò‚µ‚Ü‚·
+    'æ‰‹å‹•æŒ‡å®šã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²ã—ã¾ã™
     If pos = 0 Then
-        StartUpPosition = 0  'è“®w’è
+        StartUpPosition = 0  'æ‰‹å‹•æŒ‡å®š
         Me.Left = Range("B2").Value
         Me.Top = Range("B3").Value
     Else
-        StartUpPosition = pos  '•\¦ˆÊ’uw’è
+        StartUpPosition = pos  'è¡¨ç¤ºä½ç½®æŒ‡å®š
     End If
     
     For i = LBound(CalendarParts) To UBound(CalendarParts)
@@ -55,40 +55,40 @@ Private Sub UserForm_Terminate()
  
 End Sub
  
-Private Sub TXT“ú•t_Change()
+Private Sub TXTæ—¥ä»˜_Change()
  
-    If IsDate(Me.TXT“ú•t.Value) Then
-        CurrentDate = Me.TXT“ú•t.Value
+    If IsDate(Me.TXTæ—¥ä»˜.Value) Then
+        CurrentDate = Me.TXTæ—¥ä»˜.Value
         Call CreateDays
     End If
  
 End Sub
  
-Private Sub TXT“ú•t_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+Private Sub TXTæ—¥ä»˜_Exit(ByVal Cancel As MSForms.ReturnBoolean)
  
-    If Not IsDate(Me.TXT“ú•t.Value) Then
-        Me.TXT“ú•t.Value = CurrentDate
+    If Not IsDate(Me.TXTæ—¥ä»˜.Value) Then
+        Me.TXTæ—¥ä»˜.Value = CurrentDate
     End If
  
 End Sub
  
-Private Sub CMDæŒ_Click()
+Private Sub CMDå…ˆæœˆ_Click()
  
     CurrentDate = DateAdd("m", -1, CurrentDate)
-    Me.TXT“ú•t.Value = Format(CurrentDate, "yyyy/mm")
+    Me.TXTæ—¥ä»˜.Value = Format(CurrentDate, "yyyy/mm")
     Call CreateDays
  
 End Sub
  
-Private Sub CMD—‚Œ_Click()
+Private Sub CMDç¿Œæœˆ_Click()
  
     CurrentDate = DateAdd("m", 1, CurrentDate)
-    Me.TXT“ú•t.Value = Format(CurrentDate, "yyyy/mm")
+    Me.TXTæ—¥ä»˜.Value = Format(CurrentDate, "yyyy/mm")
     Call CreateDays
  
 End Sub
  
-Private Sub CMD¡“ú_Click()
+Private Sub CMDä»Šæ—¥_Click()
  
     ActiveCell.Value = Date
  
@@ -98,7 +98,7 @@ End Sub
  
 Private Sub CreateDays()
  
-    Me.TXT“ú•t.Value = Format(CurrentDate, "yyyy/mm")
+    Me.TXTæ—¥ä»˜.Value = Format(CurrentDate, "yyyy/mm")
  
     Dim TargetDate As Date
         TargetDate = Format(CurrentDate, "yyyy/mm") & "/1"

@@ -2,7 +2,7 @@ Attribute VB_Name = "Calendar2"
 Option Explicit
 
 
-Public Sub ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click()
+Public Sub ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click()
     Dim posData As Object
     Set posData = CreateObject("Scripting.Dictionary")
     

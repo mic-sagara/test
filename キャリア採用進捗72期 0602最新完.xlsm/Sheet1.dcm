@@ -16,7 +16,7 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     
     If Selection.Count = 1 Then
         If Not Intersect(Target, Range("j2")) Is Nothing Then
-            Call ƒJƒŒƒ“ƒ_[‚©‚ç“ü—Í_Click
+            Call ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‹ã‚‰å…¥åŠ›_Click
         End If
     End If
     

@@ -40,8 +40,8 @@ Sub DataInObject()
     Set JobCounts = CreateObject("Scripting.Dictionary")
     
     
-    Set ws1 = ThisWorkbook.Worksheets("i’»•\")
-    Set ws2 = ThisWorkbook.Worksheets("TŸŒ‹‰Êi‘S‘ÌÅVj")
+    Set ws1 = ThisWorkbook.Worksheets("é€²æ—è¡¨")
+    Set ws2 = ThisWorkbook.Worksheets("é€±æ¬¡çµæœï¼ˆå…¨ä½“æœ€æ–°ï¼‰")
     
     'Cell Color
     mainColor = RGB(197, 220, 255)
@@ -59,15 +59,15 @@ Sub DataInObject()
     
     dateRange = dateTo - dateFrom
     If dateFrom = 0 Then
-        MsgBox ("From‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B")
+        MsgBox ("Fromã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚")
         Exit Sub
     End If
     If dateTo = 0 Then
-        MsgBox ("To‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B")
+        MsgBox ("Toã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚")
         Exit Sub
     End If
     If searchCourse = "" Then
-        MsgBox ("‰•åŒo˜H‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢")
+        MsgBox ("å¿œå‹ŸçµŒè·¯ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„")
         Exit Sub
     End If
     
@@ -84,14 +84,14 @@ Sub DataInObject()
         'DateFrom <= DateValue <= dateTo\
         
         
-        '“ú•t‚ª‚È‚¢‚Æ‚«@ƒGƒ‰[ƒ`ƒFƒbƒN
+        'æ—¥ä»˜ãŒãªã„ã¨ãã€€ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ï¿¥
         If dateValue = "" Or ws1.Cells(i, 7) = 0 Or ws1.Cells(i, 8) = 0 Then
-            vbAnswer = MsgBox("[ " & i & "—ñ‚Éî•ñ‚ª‚ ‚è‚Ü‚¹‚ñB–³‹‚µ‚Ü‚·‚©H" + " ]" & vbCrLf & vbCrLf & _
-                              "'‚¢‚¢‚¦'‚ğ‰Ÿ‚·‚Æ•ÒW‚µ‚Ü‚·B" _
+            vbAnswer = MsgBox("[ " & i & "åˆ—ã«æƒ…å ±ãŒã‚ã‚Šã¾ã›ã‚“ã€‚ç„¡è¦–ã—ã¾ã™ã‹ï¼Ÿ" + " ]" & vbCrLf & vbCrLf & _
+                              "'ã„ã„ãˆ'ã‚’æŠ¼ã™ã¨ç·¨é›†ã—ã¾ã™ã€‚" _
                     , vbYesNo)
             
             If vbAnswer = vbNo Then
-                Worksheets("i’»•\").Activate
+                Worksheets("é€²æ—è¡¨").Activate
                 ws1.Rows(i).Activate
                 Exit Sub
             Else
@@ -101,7 +101,7 @@ Sub DataInObject()
         
         If CDate(dateValue) >= CDate(dateFrom) And CDate(dateValue) <= CDate(dateTo) Then
             'Not SearchCourse = Continue
-            If ws1.Cells(i, 9) <> searchCourse And searchCourse <> "‘S•”" Then
+            If ws1.Cells(i, 9) <> searchCourse And searchCourse <> "å…¨éƒ¨" Then
                 GoTo Continue
             End If
             
@@ -109,7 +109,7 @@ Sub DataInObject()
             jobName = ws1.Cells(i, 7)
             course = "_" + ws1.Cells(i, 8)
            
-            'Job@Count Check  Name_Count
+            'Jobã€€Count Check  Name_Count
             mapName = jobName + "_count_" + dateValue
             If jobMap.Exists(mapName) Then
                 jobMap(mapName) = jobMap(mapName) + 1
@@ -138,8 +138,8 @@ Continue:
     ws2.Rows("6").ClearContents
     ws2.Rows("7:10000").Clear
     ws2.Cells(6, 1) = "+"
-    ws2.Cells(6, 2) = "E‹Æ"
-    ws2.Cells(6, 3) = " ‘Œv "
+    ws2.Cells(6, 2) = "è·æ¥­"
+    ws2.Cells(6, 3) = " ç·è¨ˆ "
     
     
     'B Column Print
@@ -169,7 +169,7 @@ Continue:
             'Main Count Print
             ws2.Cells(rowCnt, colCnt) = jobMap(jobNames(j) + "_count_" + CStr(dateFrom + i))
             
-            '‘Œv@Count
+            'ç·è¨ˆã€€Count
             If DateCounts.Exists(CStr(dateFrom + i)) Then
                 DateCounts(CStr(dateFrom + i)) = DateCounts(CStr(dateFrom + i)) + jobMap(jobNames(j) + "_count_" + CStr(dateFrom + i))
             Else
@@ -179,29 +179,29 @@ Continue:
             rowCnt = rowCnt + 1
             
             If jobMap(jobNames(j) + "_count_" + CStr(dateFrom + i)) <> "" Then
-                'Main Count‚ª‚ ‚éê‡o—Í
+                'Main CountãŒã‚ã‚‹å ´åˆå‡ºåŠ›
                 For k = 0 To UBound(courses)
                     'Course Count Input
                     ws2.Cells(rowCnt, colCnt) = jobMap(jobNames(j) + "_" + courses(k) + "_" + CStr(dateFrom + i))
                     rowCnt = rowCnt + 1
                 Next k
             Else
-                'Main Count‚ª‚È‚¢ê‡
+                'Main CountãŒãªã„å ´åˆ
                 rowCnt = rowCnt + UBound(courses) + 1
             End If
         Next j
     Next i
     
-    Call síœ¤s‰B‚µ
+    Call è¡Œå‰Šé™¤ï½¤è¡Œéš ã—
     
     ws2.Columns("B:HH").AutoFit
     ws2.Columns("C:HH").HorizontalAlignment = xlCenter
     ws2.Columns("A").HorizontalAlignment = xlCenter
     
-    'ÅIs@ƒ`ƒFƒbƒN
+    'æœ€çµ‚è¡Œã€€ãƒã‚§ãƒƒã‚¯
     rowCnt = ws2.Cells(6, 2).End(xlDown).Row
     
-    'Border Printing & ‘ŒvŒvZ
+    'Border Printing & ç·è¨ˆè¨ˆç®—
     For i = 7 To rowCnt
          ws2.Cells(i, 3) = Application.WorksheetFunction.sum(Range(Cells(i, 4), Cells(i, 4 + dateRange)))
          ws2.Cells(i, 3).Font.Size = 12
@@ -209,10 +209,10 @@ Continue:
            
          
         If ws2.Cells(i, 2).Interior.Color = mainColor Then
-                '‘Œv
+                'ç·è¨ˆ
                 ws2.Cells(i, 3).Interior.Color = RGB(0, 32, 96)
                 ws2.Cells(i, 3).Font.Color = RGB(255, 255, 255)
-                'ƒfƒUƒCƒ“
+                'ãƒ‡ã‚¶ã‚¤ãƒ³
                 ws2.Rows(i).Borders(xlEdgeTop).Weight = xlThin
                 ws2.Rows(i).Borders(xlEdgeTop).Color = borderMainColor
                 
@@ -225,20 +225,20 @@ Continue:
         End If
     Next i
     
-    'ÅIsƒ`ƒFƒbƒN
+    'æœ€çµ‚è¡Œãƒã‚§ãƒƒã‚¯
     i = rowCnt
     Do While ws2.Cells(i, 2) <> 0
         i = i + 1
     Loop
     rowCnt = i - 1
     
-    '‘Œv Printing
+    'ç·è¨ˆ Printing
     ws2.Rows(rowCnt).Interior.Color = RGB(0, 32, 96)
     ws2.Rows(rowCnt).Font.Color = RGB(255, 255, 255)
     ws2.Rows(rowCnt).Font.Bold = True
     ws2.Rows(rowCnt).Font.Size = 12
     ws2.Rows(rowCnt).HorizontalAlignment = xlCenter
-    ws2.Cells(rowCnt, 2) = "‘Œv"
+    ws2.Cells(rowCnt, 2) = "ç·è¨ˆ"
     
     'rowCnt,D ~ rowCnt,HH
     ws2.Cells(rowCnt, 3) = "=Sum(D" & CStr(rowCnt) & ":HH" & CStr(rowCnt) + ")"
@@ -261,7 +261,7 @@ Function GetJobName() As String()
     Dim jobName As String
     Dim jobNames As New Collection
     
-    Set ws1 = ThisWorkbook.Worksheets("i’»•\")
+    Set ws1 = ThisWorkbook.Worksheets("é€²æ—è¡¨")
     
     On Error Resume Next
     rowCnt = ws1.Cells(2, 1).End(xlDown).Row
@@ -292,7 +292,7 @@ Function GetCourseName() As String()
     Dim course As String
     Dim courses As New Collection
     
-    Set ws1 = ThisWorkbook.Worksheets("i’»•\")
+    Set ws1 = ThisWorkbook.Worksheets("é€²æ—è¡¨")
     On Error Resume Next
     rowCnt = ws1.Cells(2, 1).End(xlDown).Row
     
@@ -319,7 +319,7 @@ End Function
 
 Sub MoveSheet()
     Dim ws1 As Worksheet
-    Set ws1 = ThisWorkbook.Worksheets("i’»•\")
+    Set ws1 = ThisWorkbook.Worksheets("é€²æ—è¡¨")
     ws1.Activate
     
 End Sub
