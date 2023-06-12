@@ -1,0 +1,183 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Sheet2"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+'Option Explicit
+
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Dim Headline_Color As Long
+    Dim Headline_Row As Long
+    Dim Hide_Color As Long
+    Dim Check As Long
+    Dim ws2 As Worksheet
+    Dim i As Long
+    Dim S_Date As Range
+    Dim L_Date As Range
+    Dim PMcount As Long
+    
+    Debug.Print Target.Address
+    
+    Set S_Date = Cells(3, 5)
+    Set L_Date = Cells(3, 6)
+    
+    If Target.Address = "$A$1" Then End
+    
+    If Selection.Count = 1 Then
+        If Not Intersect(Target, S_Date) Is Nothing Then
+            Call カレンダーから入力_Click
+                If L_Date.Value = 1 Or S_Date > L_Date Then
+                    Do While S_Date > L_Date
+                            If L_Date.Value = 0 Then
+                                S_Date.Interior.ColorIndex = 0
+                                Exit Do
+                            End If
+
+                            S_Date.Interior.ColorIndex = 3
+                            MsgBox "日付をご確認ください。"
+                            
+                            Call カレンダーから入力_Click
+                                If S_Date <= L_Date Then
+                                    S_Date.Interior.ColorIndex = 0
+                                    Exit Do
+                                End If
+                    Loop
+                ElseIf L_Date.Value = 0 Then
+                        GoTo Continue
+                End If
+                        L_Date.Interior.ColorIndex = 0
+        End If
+
+  End If
+    
+    If Selection.Count = 1 Then
+        If Not Intersect(Target, L_Date) Is Nothing Then
+            Call カレンダーから入力_Click
+                If S_Date >= L_Date Then
+                    Do While S_Date > L_Date
+                    
+                            If S_Date.Value = 0 Then
+                                MsgBox "`最初の日付をご指定ください。"
+                                S_Date.Interior.ColorIndex = 3
+                                Exit Do
+                            End If
+                            
+                            L_Date.Interior.ColorIndex = 3
+                            MsgBox "日付をご確認ください。"
+                            
+                            Call カレンダーから入力_Click
+                                If S_Date <= L_Date Then
+                                    L_Date.Interior.ColorIndex = 0
+                                    Exit Do
+                                End If
+                    Loop
+                    
+                End If
+                        L_Date.Interior.ColorIndex = 0
+        End If
+           'ElseIf S_Date.Value = 0 Then
+           '                     MsgBox "最初の日付をご指定ください。d3"
+           '                   S_Date.Interior.ColorIndex = 3
+    End If
+
+Continue:
+    
+    
+    
+    If Target.Count > 1 Or Target.Column <> 1 Then End
+    Application.ScreenUpdating = False
+    Set ws2 = ThisWorkbook.Worksheets("週次結果（全体最新）")
+    
+    Headline_Color = RGB(197, 220, 255)
+    Hide_Color = RGB(232, 241, 255)
+    Check = Target.Interior.Color
+    Headline_Row = Target.Row
+    
+   
+    
+    '全体ボタン　隠す
+    If Target.Address = "$A$6" And ws2.Range("A6").Value = "-" Then
+        i = 7
+        Do While ws2.Cells(i, 1).Interior.Color <> RGB(0, 32, 96)
+            If ws2.Cells(i, 2).Interior.Color = Hide_Color Then
+                ws2.Rows(i).Hidden = True
+            ElseIf ws2.Cells(i, 2).Interior.Color = Headline_Color And ws2.Cells(i, 1) = "-" Then
+                ws2.Cells(i, 1) = "+"
+            End If
+            i = i + 1
+        Loop
+        
+    ElseIf Target.Address = "$A$6" And ws2.Range("A6").Value = "+" Then
+        i = 7
+        Do While ws2.Cells(i, 1).Interior.Color <> RGB(0, 32, 96)
+            If ws2.Cells(i, 2).Interior.Color = Hide_Color Then
+                ws2.Rows(i).Hidden = False
+            ElseIf ws2.Cells(i, 2).Interior.Color = Headline_Color And ws2.Cells(i, 1) = "+" Then
+                ws2.Cells(i, 1) = "-"
+            End If
+          i = i + 1
+        Loop
+    End If
+    
+    If Check = RGB(0, 32, 96) Then
+        GoTo LaskCheck
+    End If
+    If Check <> Headline_Color Then End
+    
+    '===========================================================================
+    
+
+    i = 1
+    '隠す
+    If ws2.Rows(Headline_Row + i).Hidden = False Then
+        Do While ws2.Cells(Headline_Row + i, 2).Interior.Color = Hide_Color
+            ws2.Rows(Headline_Row + i).Hidden = True
+            Cells(Headline_Row, 1) = "+"
+            i = i + 1
+        Loop
+    Else
+    '表示する
+        Do While ws2.Cells(Headline_Row + i, 2).Interior.Color = Hide_Color
+            ws2.Rows(Headline_Row + i).Hidden = False
+            Cells(Headline_Row, 1) = "-"
+            i = i + 1
+            ws2.Range("A6").Value = "-"
+        Loop
+    End If
+    '~==============================================================================
+LaskCheck:
+   i = 7
+    PMcount = 0
+    Do While ws2.Cells(i, 1).Interior.Color <> RGB(0, 32, 96)
+        If ws2.Cells(i, 1) = "-" And ws2.Cells(i, 1).Interior.Color = Headline_Color Then
+            PMcount = 1
+            Debug.Print "-に変える"
+            
+        End If
+        i = i + 1
+    Loop
+    
+    If PMcount = 1 Then
+        ws2.Cells(6, 1) = "-"
+    Else
+        ws2.Cells(6, 1) = "+"
+    End If
+    
+    ws2.Cells(6, 1).Interior.Color = RGB(0, 32, 96)
+    ws2.Cells(6, 1).Font.Color = RGB(255, 255, 255)
+    Range("a1").Activate
+    
+    
+    Application.ScreenUpdating = True
+   
+    
+
+End Sub
+
+
