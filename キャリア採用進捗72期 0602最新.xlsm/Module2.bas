@@ -1,8 +1,8 @@
 Attribute VB_Name = "Module2"
 Option Explicit
-Public Sub síœ¤s‰B‚µ()
-
-'   síœs
+Public Sub è¡Œå‰Šé™¤ï½¤è¡Œéš ã—()
+   ' git test
+'   è¡Œå‰Šé™¤s
     Dim B_Row As Long
     Dim i As Long
     Dim ws3 As Worksheet
@@ -12,7 +12,7 @@ Public Sub síœ¤s‰B‚µ()
     Dim sum As Long
     Dim DarkBlue As Long
     
-    Set ws3 = ThisWorkbook.Worksheets("TŸŒ‹‰Êi‘S‘ÌÅVj")
+    Set ws3 = ThisWorkbook.Worksheets("é€±æ¬¡çµæœï¼ˆå…¨ä½“æœ€æ–°ï¼‰")
     
     Headline_Color = RGB(197, 220, 255)
     Hide_Color = RGB(232, 241, 255)
@@ -39,10 +39,10 @@ Public Sub síœ¤s‰B‚µ()
     ws3.Cells(B_Row + 1, 2) = "Data"
     Debug.Print B_Row
     
-'    s‘S•\¦
+'    è¡Œå…¨è¡¨ç¤º
     ws3.Range("B7", Cells(Rows.Count, 2).End(xlUp)).EntireRow.Hidden = False
             
-'    s‰B‚µ
+'    è¡Œéš ã—
     For i = B_Row To 7 Step -1
         If ws3.Cells(i, 2).Interior.Color = Hide_Color Then
             ws3.Rows(i).Hidden = True
@@ -50,12 +50,12 @@ Public Sub síœ¤s‰B‚µ()
     Next i
 End Sub
 
-Sub ƒNƒŠƒA()
+Sub ã‚¯ãƒªã‚¢()
     Dim B_Row As Long
     Dim i As Long
     Dim ws3 As Worksheet
     
-    Set ws3 = ThisWorkbook.Worksheets("TŸŒ‹‰Êi‘S‘ÌÅVj")
+    Set ws3 = ThisWorkbook.Worksheets("é€±æ¬¡çµæœï¼ˆå…¨ä½“æœ€æ–°ï¼‰")
     
     ws3.Range("B7", Cells(Rows.Count, 2).End(xlUp)).EntireRow.Hidden = False
     
